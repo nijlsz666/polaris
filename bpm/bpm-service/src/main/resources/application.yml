@@ -1,0 +1,43 @@
+server:
+  port: ${BPM_SERVER_PORT:8090}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: polaris-bpm-service
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/polaris_mes?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: ${BPM_SQL_INIT_MODE:always}
+      schema-locations: classpath:db/schema.sql
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+  global-config:
+    banner: false
+
+flowable:
+  database-schema-update: true
+  check-process-definitions: true
+  history-level: audit
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+polaris:
+  bpm:
+    default-actor: ${BPM_DEFAULT_ACTOR:admin}

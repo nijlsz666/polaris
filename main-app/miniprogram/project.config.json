@@ -1,0 +1,9 @@
+{
+  "description": "Polaris 制造运营 PDA 微信小程序壳",
+  "packOptions": {"ignore": []},
+  "setting": {"urlCheck": false, "es6": true, "postcss": true, "minified": true},
+  "compileType": "miniprogram",
+  "appid": "touristappid",
+  "projectname": "polaris-pda",
+  "miniprogramRoot": "./"
+}

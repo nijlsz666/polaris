@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: polaris-service
+  datasource:
+    url: ${DB_URL:jdbc:mysql://127.0.0.1:3306/polaris_mes?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:}
+    password: ${DB_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  sql:
+    init:
+      mode: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+polaris:
+  security:
+    token-secret: ${POLARIS_TOKEN_SECRET:polaris-development-secret-change-me-please}
+    token-ttl-seconds: ${POLARIS_TOKEN_TTL_SECONDS:28800}
+  release:
+    storage-path: ${POLARIS_RELEASE_STORAGE_PATH:${java.io.tmpdir}/polaris-releases}
+  file-storage-path: ${POLARIS_FILE_STORAGE_PATH:${java.io.tmpdir}/polaris-files}

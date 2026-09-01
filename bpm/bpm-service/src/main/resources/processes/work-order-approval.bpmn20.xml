@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             targetNamespace="Polaris.BPM">
+    <process id="workOrderApproval" name="工单发布审批" isExecutable="true">
+        <startEvent id="start" name="提交审批"/>
+        <sequenceFlow id="flow-start" sourceRef="start" targetRef="plannerApproval"/>
+        <userTask id="plannerApproval" name="计划员审核" flowable:candidateGroups="planner"/>
+        <sequenceFlow id="flow-planner" sourceRef="plannerApproval" targetRef="decision"/>
+        <exclusiveGateway id="decision" name="计划审核结果"/>
+        <sequenceFlow id="flow-reject" sourceRef="decision" targetRef="rejected">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approved == false}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow-approve" sourceRef="decision" targetRef="productionApproval">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approved == true}]]></conditionExpression>
+        </sequenceFlow>
+        <userTask id="productionApproval" name="生产主管确认" flowable:candidateGroups="admin"/>
+        <sequenceFlow id="flow-production" sourceRef="productionApproval" targetRef="approved"/>
+        <endEvent id="rejected" name="审批驳回"/>
+        <endEvent id="approved" name="审批通过"/>
+    </process>
+</definitions>
