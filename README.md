@@ -3,6 +3,7 @@
 # Polaris MES/WMS 一体化制造运营平台
 <img width="2990" height="1516" alt="image" src="https://github.com/user-attachments/assets/153dc453-5b1a-4f84-b7e9-2c66e6a71834" />
 
+<img width="548" height="548" alt="image" src="https://github.com/user-attachments/assets/70bad6a9-c311-44ba-9d40-27fbde1f5797" />
 
 
 Polaris 是一套面向制造企业的开源业务基线，围绕 **ERP 经营管理、MES 生产执行、WMS 仓储作业、QMS 质量管理和流程审批**，打通从需求、计划、生产、收发料到库存、质量和经营分析的业务链路。
